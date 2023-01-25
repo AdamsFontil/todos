@@ -9,12 +9,13 @@ import './style.css';
 
 let todoItems = [];
 
-const todoFactory = ((title, description, dueDate, priority, notes) => {
+const todoFactory = ((title, description, dueDate, priority, notes,complete) => {
 title,
 description,
 dueDate,
 priority,
-notes
+notes,
+complete
 return {
     title,
     description,
@@ -49,19 +50,53 @@ const makeProject = ( (title) => {
     }
 })
 
-function showForm() {
+let showForm = () => {
     document.getElementById("myForm").style.display = "block";
   }
+let hideForm = () => {
+    document.getElementById("myForm").style.display = "none";
+  }
+
+  let clearForm = () => {
+    var inputs = document.querySelectorAll("input");
+  for (var i = 0; i < inputs.length - 1; i++) { // -1 so that the button isn't selected
+      inputs[i].value = "";
+  }
+   }
+
+const form = document.querySelector('.form')
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    var formData = new FormData(form);
+    var todoFactory2 = {};
+    for (var [key, value] of formData.entries()) {
+      todoFactory2[key] = value;
+    }
+    // console.log(todoFactory2);
+    // console.log(todoFactory2.title);
+    todoItems.push(todoFactory2)
+    // console.log(todoItems)
+
+  const list = document.querySelector('.list')
+  const todo = document.createElement('div')
+    todo.textContent = todoFactory2.title
+    list.appendChild(todo)
+    hideForm()
+    clearForm()
+  });
+
+
+
 
 const newProject = document.querySelector('.newProject')
 const taskText = document.querySelector('.taskText')
 const newTodo = document.querySelector('.newTodo')
 newTodo.addEventListener('click', ()=> {
     console.log('test')
+    showForm()
 })
 newProject.addEventListener('click', ()=> {
     console.log('testing')
-    showForm()
 })
 const school = makeProject ('school')
 const finance = makeProject ('finance')
