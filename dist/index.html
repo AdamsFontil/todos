@@ -8,10 +8,38 @@
     <script defer src="main.js"></script>
 </head>
 <body>
-    <h1>My Todo List</h1>
-    <form>
-      <input type="text" id="new-task" placeholder="Add a new task...">
-      <button type="submit">Add</button>
+    <div class="gridContainer">
+        <div class="title">
+            <h1>My Todo List</h1>
+        </div>
+        <div class="body">
+            <div class="sidebar">
+                <div class="views">
+                    <div class="Home"> Home</div>
+                    <div class="today">Today Agenda</div>
+                    <div class="week">Week View</div>
+                </div>
+                <div class="projects">
+                    <div class="sample"> Sample Project</div>
+                    <div class="sample"> Sample Project 2</div>
+                    <div class="sample"> Sample Project 3</div>
+                </div>
+            </div>
+            <div class="todos">
+                <div class="todo1">Something</div>
+                <div class="todo2">Something</div>
+                <div class="todo3">Something</div>
+                <div class="todo4">Something</div>
+                <div class="todo5">Something</div>
+            </div>
+        </div>
+        <div class="footer">
+            <h3>Copyright Adams</h3>
+        </div>
+    </div>
+    <!-- <form>
+      <input type="text" class="taskText" id="new-task" placeholder="Add a new task...">
+      <button class="add" type="button">Add</button>
     </form>
     <ul id="todo-list">
       <li>
@@ -19,6 +47,6 @@
         <span>Task 1</span>
         <button class="delete-button">Delete</button>
       </li>
-    </ul>
+    </ul> -->
 </body>
 </html>
