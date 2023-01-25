@@ -1,11 +1,13 @@
 import './style.css';
 
-const todosList = (() => {
-    let todoItems = []
-    return {
-        todoItems
-    }
-})()
+// const todosList = (() => {
+//     let todoItems = []
+//     return {
+//         todoItems
+//     }
+// })()
+
+let todoItems = [];
 
 const todoFactory = ((title, description, dueDate, priority, notes) => {
 title,
@@ -14,11 +16,11 @@ dueDate,
 priority,
 notes
 return {
-    getTitle: () => title,
-    getDescription: () => description,
-    getDueDate: () => dueDate,
-    getPriority: () => priority,
-    getNotes: () => notes
+    title,
+    description,
+    dueDate,
+    priority,
+    notes
 }
 })
 
@@ -26,14 +28,14 @@ const task1 = todoFactory ('trash', 'take it out', '9/2/2021', 'high', 'testing'
 const task2 = todoFactory ('eat', 'take it out', '9/2/2021', 'high', 'testing')
 const task3 = todoFactory ('sleep', 'take it out', '9/2/2021', 'high', 'testing')
 const task4 = todoFactory ('repeat', 'take it out', '9/2/2021', 'high', 'testing')
-console.log(todosList)
-console.log(todosList.todoItems)
-todosList.todoItems.push(task1)
-todosList.todoItems.push(task2)
-todosList.todoItems.push(task3)
-todosList.todoItems.push(task4)
-console.log(todosList)
-console.log(todosList.todoItems)
+// console.log(todosList)
+console.log(todoItems)
+todoItems.push(task1)
+todoItems.push(task2)
+todoItems.push(task3)
+todoItems.push(task4)
+// console.log(todosList)
+console.log(todoItems)
 
 
 // console.log(task1)
@@ -68,10 +70,17 @@ const social = makeProject ('social')
 
 
 
-// console.log(school.getTitle())
-// console.log(social.getTitle())
+
+let showTasksOnPage = () => {
+    let myArray = todoItems
+const list = document.querySelector('.list')
 
 
-// numberOfProjects {
-//     num
-// }
+myArray.forEach(function(item, index) {
+  console.log(item.title);
+const todo = document.createElement('div')
+  todo.textContent = item.title
+  list.appendChild(todo)
+});
+}
+showTasksOnPage()
