@@ -23,6 +23,7 @@
                     <div class="sample"> Sample Project</div>
                     <div class="sample"> Sample Project 2</div>
                     <div class="sample"> Sample Project 3</div>
+                    <button class="newProject" type="button"> + New Project</button>
                 </div>
             </div>
             <div class="todos">
@@ -31,22 +32,27 @@
                 <div class="todo3">Something</div>
                 <div class="todo4">Something</div>
                 <div class="todo5">Something</div>
+                <button class="newTodo" type="button"> + New ToDo</button>
             </div>
         </div>
+        <form id="myForm">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title"><br><br>
+            <label for="Description">Description:</label>
+            <input type="textbox" id="description" name="description"><br><br>
+            <label for="dueDate">Due Date:</label>
+            <input type="date" id="description" name="description"><br><br>
+            <label for="priority">Priority:</label>
+            <input type="text" id="description" name="description"><br><br>
+            <input class="submitTodo" type="button" value=" + new Todo">
+          </form>
+          <!-- need to make form nicer, add a textbox for description, add categories for priority  -->
+
+
+
         <div class="footer">
             <h3>Copyright Adams</h3>
         </div>
     </div>
-    <!-- <form>
-      <input type="text" class="taskText" id="new-task" placeholder="Add a new task...">
-      <button class="add" type="button">Add</button>
-    </form>
-    <ul id="todo-list">
-      <li>
-        <input type="checkbox">
-        <span>Task 1</span>
-        <button class="delete-button">Delete</button>
-      </li>
-    </ul> -->
 </body>
 </html>
