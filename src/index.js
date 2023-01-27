@@ -30,11 +30,11 @@ const task2 = todoFactory ('eat', 'take it out', '9/2/2021', 'high', 'testing')
 const task3 = todoFactory ('sleep', 'take it out', '9/2/2021', 'high', 'testing')
 const task4 = todoFactory ('repeat', 'take it out', '9/2/2021', 'high', 'testing')
 // console.log(todosList)
-console.log(todoItems)
-todoItems.push(task1)
-todoItems.push(task2)
-todoItems.push(task3)
-todoItems.push(task4)
+// console.log(todoItems)
+// todoItems.push(task1)
+// todoItems.push(task2)
+// todoItems.push(task3)
+// todoItems.push(task4)
 // console.log(todosList)
 console.log(todoItems)
 
@@ -56,6 +56,12 @@ let showForm = () => {
 let hideForm = () => {
     document.getElementById("myForm").style.display = "none";
   }
+  let showForm2 = () => {
+    document.getElementById("myForm2").style.display = "block";
+  }
+let hideForm2 = () => {
+    document.getElementById("myForm2").style.display = "none";
+  }
 
   let clearForm = () => {
     var inputs = document.querySelectorAll("input");
@@ -71,8 +77,9 @@ form.addEventListener("submit", function(event) {
     var todoFactory2 = {};
     for (var [key, value] of formData.entries()) {
       todoFactory2[key] = value;
+      console.log(todoFactory2[key])
     }
-    // console.log(todoFactory2);
+    console.log(todoFactory2);
     // console.log(todoFactory2.title);
     todoItems.push(todoFactory2)
     // console.log(todoItems)
@@ -84,6 +91,26 @@ form.addEventListener("submit", function(event) {
     hideForm()
     clearForm()
   });
+
+  const form2 = document.querySelector('.form2')
+  form2.addEventListener("submit", function(event) {
+    event.preventDefault();
+    var formData = new FormData(form2);
+    var todoFactory2 = {};
+    for (var [key, value] of formData.entries()) {
+      todoFactory2[key] = value;
+    }
+
+  const projects = document.querySelector('.projects')
+  const project = document.createElement('div')
+    project.textContent = todoFactory2.title
+    projects.appendChild(project)
+    console.log('project')
+    console.log(todoFactory2)
+    hideForm2()
+    clearForm()
+  });
+
 
 
 
@@ -97,6 +124,7 @@ newTodo.addEventListener('click', ()=> {
 })
 newProject.addEventListener('click', ()=> {
     console.log('testing')
+    showForm2()
 })
 const school = makeProject ('school')
 const finance = makeProject ('finance')

@@ -49,3 +49,18 @@
     background-color: rgb(0,0,0); /* fallback color */
     background-color: rgba(11, 54, 225, 0.4); /* black w/ opacity */
   }
+  #myForm2 {
+    border-radius: 10px;
+    padding: 40px;
+    display: none; /* hidden by default */
+    position: fixed; /* stay in place */
+    z-index: 1; /* sit on top */
+    width: 600px; /* set the form width */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto; /* enable scroll if needed */
+    background-color: rgb(0,0,0); /* fallback color */
+    background-color: rgba(11, 54, 225, 0.4); /* black w/ opacity */
+  }
