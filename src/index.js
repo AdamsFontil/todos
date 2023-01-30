@@ -9,11 +9,12 @@ import './style.css';
 
 let todoItems = [];
 
-const todoFactory = ((title, description, dueDate, priority, notes,complete) => {
+const todoFactory = ((title, description, dueDate, priority,project, notes,complete) => {
 title,
 description,
 dueDate,
 priority,
+project,
 notes,
 complete
 return {
@@ -26,22 +27,18 @@ return {
 })
 
 const task1 = todoFactory ('trash', 'take it out', '9/2/2021', 'high', 'testing')
-const task2 = todoFactory ('eat', 'take it out', '9/2/2021', 'high', 'testing')
-const task3 = todoFactory ('sleep', 'take it out', '9/2/2021', 'high', 'testing')
-const task4 = todoFactory ('repeat', 'take it out', '9/2/2021', 'high', 'testing')
+const task2 = todoFactory ('eat', 'take it out', '9/3/2021', 'high', 'testing')
+const task3 = todoFactory ('sleep', 'take it out', '9/4/2021', 'high', 'testing')
+const task4 = todoFactory ('repeat', 'take it out', '9/5/2021', 'high', 'testing')
 // console.log(todosList)
-// console.log(todoItems)
-// todoItems.push(task1)
-// todoItems.push(task2)
-// todoItems.push(task3)
-// todoItems.push(task4)
+console.log(todoItems)
+todoItems.push(task1)
+todoItems.push(task2)
+todoItems.push(task3)
+todoItems.push(task4)
 // console.log(todosList)
 console.log(todoItems)
 
-
-// console.log(task1)
-// console.log(task1.getDescription())
-// console.log(task1.getTitle())
 
 const makeProject = ( (title) => {
     title
@@ -65,10 +62,28 @@ let hideForm2 = () => {
 
   let clearForm = () => {
     var inputs = document.querySelectorAll("input");
-  for (var i = 0; i < inputs.length - 1; i++) { // -1 so that the button isn't selected
-      inputs[i].value = "";
+
+  for (var i = 0; i < inputs.length; i++) {
+      inputs[i].value = ""
+      if (inputs[i].className === 'submit') {
+        inputs[i].value = '+ New Todo'
+      } else if (inputs[i].className === 'submitProject') {
+        inputs[i].value = '+ New Project'
+      }
+
+}
   }
-   }
+let addFormInputs = () => {
+  preventDefault();
+    var formData = new FormData(form);
+    var todoFactory2 = {};
+    for (var [key, value] of formData.entries()) {
+      todoFactory2[key] = value;
+      console.log(todoFactory2[key])
+    }
+
+}
+
 
 const form = document.querySelector('.form')
 form.addEventListener("submit", function(event) {
@@ -79,17 +94,18 @@ form.addEventListener("submit", function(event) {
       todoFactory2[key] = value;
       console.log(todoFactory2[key])
     }
-    console.log(todoFactory2);
-    // console.log(todoFactory2.title);
-    todoItems.push(todoFactory2)
-    // console.log(todoItems)
 
+    todoItems.push(todoFactory2)
   const list = document.querySelector('.list')
   const todo = document.createElement('div')
     todo.textContent = todoFactory2.title
     list.appendChild(todo)
     hideForm()
     clearForm()
+
+    return {
+      todoFactory2
+    }
   });
 
   const form2 = document.querySelector('.form2')
@@ -104,9 +120,11 @@ form.addEventListener("submit", function(event) {
   const projects = document.querySelector('.projects')
   const project = document.createElement('div')
     project.textContent = todoFactory2.title
+    project.className = 'project'
     projects.appendChild(project)
     console.log('project')
     console.log(todoFactory2)
+    todoItems.push(todoFactory2)
     hideForm2()
     clearForm()
   });
@@ -131,13 +149,17 @@ const finance = makeProject ('finance')
 const personal = makeProject ('personal')
 const social = makeProject ('social')
 
-
+const list = document.querySelector('.list')
+const todosHeader = document.querySelector('.todosHeader')
 
 
 let showTasksOnPage = () => {
     let myArray = todoItems
-const list = document.querySelector('.list')
-
+    console.log(myArray)
+    console.log('hi')
+    list.textContent = ''
+    todosHeader.textContent = 'All Tasks'
+    list.appendChild(todosHeader)
 
 myArray.forEach(function(item, index) {
   console.log(item.title);
@@ -147,3 +169,119 @@ const todo = document.createElement('div')
 });
 }
 showTasksOnPage()
+
+let showsTaskforWeek = () => {
+  let myArray = todoItems
+    list.textContent = ''
+    todosHeader.textContent = 'Due this Week'
+    list.appendChild(todosHeader)
+myArray.forEach(function(item, index) {
+  console.log(item.dueDate);
+  if (item.title === 'trash') {
+    console.log(item.title)
+    console.log('hello')
+    const todo = document.createElement('div')
+  todo.textContent = item.title
+  list.appendChild(todo)
+  }
+});
+
+}
+
+let showsTaskforToday = () => {
+  let myArray = todoItems
+    list.textContent = ''
+    todosHeader.textContent = 'Due Today'
+    list.appendChild(todosHeader)
+myArray.forEach(function(item, index) {
+  console.log(item.dueDate);
+  if (item.title === 'boy') {
+    console.log(item.title)
+    console.log('hello')
+    const todo = document.createElement('div')
+  todo.textContent = item.title
+  list.appendChild(todo)
+  }
+});
+
+}
+
+let showsTaskforMonth = () => {
+  let myArray = todoItems
+    list.textContent = ''
+    todosHeader.textContent = 'Due this Month'
+    list.appendChild(todosHeader)
+myArray.forEach(function(item, index) {
+  console.log(item.dueDate);
+  if (item.title === 'fog') {
+    console.log(item.title)
+    console.log('hello')
+    const todo = document.createElement('div')
+  todo.textContent = item.title
+  list.appendChild(todo)
+
+  }
+});
+}
+
+let showsTaskforProject = () => {
+  let myArray = todoItems
+    list.textContent = ''
+    todosHeader.textContent = 'Project name'
+    list.appendChild(todosHeader)
+myArray.forEach(function(item, index) {
+  console.log(item.dueDate);
+  if (item.title === 'fog') {
+    // console.log(item.title)
+    // console.log('hello')
+    const todo = document.createElement('div')
+  todo.textContent = item.title
+  list.appendChild(todo)
+
+  }
+});
+console.log('working on it')
+}
+
+
+const week = document.querySelector('.week')
+week.addEventListener('click', () => {
+  showsTaskforWeek()
+})
+const home = document.querySelector('.home')
+home.addEventListener('click', () => {
+  showTasksOnPage()
+})
+const month = document.querySelector('.month')
+month.addEventListener('click', () => {
+  showsTaskforMonth()
+})
+const today = document.querySelector('.today')
+today.addEventListener('click', () => {
+  showsTaskforToday()
+})
+
+
+// const project = document.querySelectorAll('.project')
+
+
+
+
+const parent = document.querySelector('.projects');
+
+
+parent.addEventListener('click', function(event) {
+  if (event.target.matches('.project')) {
+    const divs = document.querySelectorAll('.project');
+  divs.forEach(div => {
+  div.addEventListener('click', () =>
+  {
+    showsTaskforProject()
+    todosHeader.textContent = div.textContent
+  });
+  console.log('hello parent')
+});
+
+
+  }
+});

@@ -1,37 +1,61 @@
-
+* {
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 .gridContainer {
     display: grid;
-    grid-template-rows: 1fr 7fr .3fr;
+    grid-template-rows: 3fr 16fr 1fr;
     grid-row: 1fr 5fr 1fr;
     --color: brown;
 }
 .title {
-    --color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(65, 65, 197);
 }
 .body {
+
     display: grid;
     grid-template-columns: 1fr 4fr;
     --color: red;
 
 }
 .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     display: grid;
-    --color: green;
+    background-color: rgb(65, 65, 197);
 }
 .sidebar {
     /* padding: 20px; */
+    /* padding: 30px; */
     gap: 50px;
     display: grid;
-    --color: yellow;
+    background-color: rgb(189, 189, 200);
+}
+.sidebar div {
+    margin: 20px;
 }
 .todos {
-    --color: pink;
+    background-color: white;
     display: flex;
     flex-direction: column;
     /* padding: 20px; */
 }
-.projects {
-    --color: orange;
+.todos div {
+    margin: 20px;
+
+}
+.list div:hover {
+    background-color: red;
+}
+.views div:hover {
+    background-color: red;
+}
+.projects div:hover {
+    background-color: red;
 
 }
 #myForm {
