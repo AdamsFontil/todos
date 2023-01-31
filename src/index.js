@@ -32,13 +32,13 @@ const task2 = todoFactory ('eat', 'take it out', '9/3/2021', 'high', 'testing')
 const task3 = todoFactory ('sleep', 'take it out', '9/4/2021', 'high', 'testing')
 const task4 = todoFactory ('repeat', 'take it out', '9/5/2021', 'high', 'testing')
 // console.log(todosList)
-console.log(todoItems)
+// console.log(todoItems)
 todoItems.push(task1)
 todoItems.push(task2)
 todoItems.push(task3)
 todoItems.push(task4)
 // console.log(todosList)
-console.log(todoItems)
+// console.log(todoItems)
 
 
 const makeProject = ( (title) => {
@@ -168,14 +168,14 @@ const todosHeader = document.querySelector('.todosHeader')
 
 let showTasksOnPage = () => {
     let myArray = todoItems
-    console.log(myArray)
-    console.log('hi')
+    // console.log(myArray)
+    // console.log('hi')
     list.textContent = ''
     todosHeader.textContent = 'All Tasks'
     list.appendChild(todosHeader)
 
 myArray.forEach(function(item, index) {
-  console.log(item.title);
+  // console.log(item.title);
 const todo = document.createElement('div')
   todo.textContent = item.title
   list.appendChild(todo)
@@ -242,19 +242,20 @@ myArray.forEach(function(item, index) {
 
 let showsTaskforProject = () => {
   let myArray = todoItems
+  const div = document.querySelector('.active')
     list.textContent = ''
     list.appendChild(todosHeader)
 myArray.forEach(function(item, index) {
-  console.log(item.dueDate);
-  if (item.project === 'fog') {
-    // console.log(item.title)
+
+  if (item.project === div.textContent) {
+    console.log(item.project);
     // console.log('hello')
     const todo = document.createElement('div')
   todo.textContent = item.title
   list.appendChild(todo)
-  let returnedTodoFactory2 = addFormInputs();
-  console.log(returnedTodoFactory2)
-  // console.log(todoFactory2)
+  // let returnedTodoFactory2 = addFormInputs();
+  // console.log(returnedTodoFactory2)
+  console.log('adding todo with projectname')
   }
 });
 console.log('working on it')
@@ -304,12 +305,16 @@ parent.addEventListener('click', function(event) {
   {
     showsTaskforProject()
     div.classList.add('active');
+    console.log(div)
     todosHeader.textContent = div.textContent
+    if (div.className === 'project active') {
+      console.log('true')
+    }
 
 
   });
 
-  // console.log('hello parent')
+  console.log('hello parent')
   // let returnedTodoFactory2 = addFormInputs();
   // console.log(returnedTodoFactory2)
 
