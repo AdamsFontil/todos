@@ -8,6 +8,7 @@ import './style.css';
 // })()
 
 let todoItems = [];
+let allProjects = [];
 
 const todoFactory = ((title, description, dueDate, priority,project, notes,complete) => {
 title,
@@ -61,9 +62,9 @@ let hideForm2 = () => {
   }
 
   let clearForm = () => {
-    var inputs = document.querySelectorAll("input");
+    let inputs = document.querySelectorAll("input");
 
-  for (var i = 0; i < inputs.length; i++) {
+  for (let i = 0; i < inputs.length; i++) {
       inputs[i].value = ""
       if (inputs[i].className === 'submit') {
         inputs[i].value = '+ New Todo'
@@ -73,71 +74,83 @@ let hideForm2 = () => {
 
 }
   }
-let addFormInputs = () => {
-  preventDefault();
-    var formData = new FormData(form);
-    var todoFactory2 = {};
-    for (var [key, value] of formData.entries()) {
+  let addFormInputs = () => {
+    let formData = new FormData(form);
+    let todoFactory2 = {};
+    for (let [key, value] of formData.entries()) {
       todoFactory2[key] = value;
       console.log(todoFactory2[key])
     }
-
-}
-
-
-const form = document.querySelector('.form')
-form.addEventListener("submit", function(event) {
-    event.preventDefault();
-    var formData = new FormData(form);
-    var todoFactory2 = {};
-    for (var [key, value] of formData.entries()) {
-      todoFactory2[key] = value;
-      console.log(todoFactory2[key])
+    if (allProjects) {
+      // todoFactory2.project = 'Not Specified'
     }
-
     todoItems.push(todoFactory2)
-  const list = document.querySelector('.list')
-  const todo = document.createElement('div')
-    todo.textContent = todoFactory2.title
-    list.appendChild(todo)
-    hideForm()
-    clearForm()
+    const list = document.querySelector('.list')
+    const todo = document.createElement('div')
+      todo.textContent = todoFactory2.title
+      list.appendChild(todo)
 
-    return {
-      todoFactory2
-    }
-  });
+  const divs = document.querySelectorAll('.project');
+  divs.forEach(div => {
+      if (div.classList.contains('active')) {
+        console.log('The div is active');
+        console.log(div)
+        console.log(div.textContent)
+        todoFactory2.project = div.textContent
+      // } else {
+      //   console.log('The div is not active');
+      //   todoFactory2.project = 'Not Specified'
+       } })
 
-  const form2 = document.querySelector('.form2')
-  form2.addEventListener("submit", function(event) {
-    event.preventDefault();
-    var formData = new FormData(form2);
-    var todoFactory2 = {};
-    for (var [key, value] of formData.entries()) {
-      todoFactory2[key] = value;
-    }
-
+    return todoFactory2;
+}
+let addForm2Inputs = () => {
+  let formData = new FormData(form2);
+  let todoFactory2 = {};
+  for (let [key, value] of formData.entries()) {
+    todoFactory2[key] = value;
+    console.log(todoFactory2[key])
+  }
+  allProjects.push(todoFactory2)
   const projects = document.querySelector('.projects')
   const project = document.createElement('div')
     project.textContent = todoFactory2.title
+    let returnedTodoFactory2 = addFormInputs();
+    console.log(returnedTodoFactory2)
+    todoFactory2.project = todoFactory2.title
+
     project.className = 'project'
     projects.appendChild(project)
-    console.log('project')
-    console.log(todoFactory2)
     todoItems.push(todoFactory2)
-    hideForm2()
-    clearForm()
-  });
+  return todoFactory2;
+}
 
-
-
+const form = document.querySelector('.form')
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  let returnedTodoFactory2 = addFormInputs();
+  hideForm()
+  clearForm()
+  console.log(returnedTodoFactory2)
+  console.log(allProjects)
+  console.log(todoItems)
+})
+const form2 = document.querySelector('.form2')
+form2.addEventListener("submit", function(event) {
+  event.preventDefault();
+  let returnedTodoFactory2 = addForm2Inputs();
+  hideForm2()
+  clearForm()
+  console.log(returnedTodoFactory2)
+  console.log(allProjects)
+});
 
 
 const newProject = document.querySelector('.newProject')
 const taskText = document.querySelector('.taskText')
 const newTodo = document.querySelector('.newTodo')
 newTodo.addEventListener('click', ()=> {
-    console.log('test')
+    console.log('new todo')
     showForm()
 })
 newProject.addEventListener('click', ()=> {
@@ -185,6 +198,9 @@ myArray.forEach(function(item, index) {
   list.appendChild(todo)
   }
 });
+return {
+  showsTaskforWeek
+}
 
 }
 
@@ -227,20 +243,30 @@ myArray.forEach(function(item, index) {
 let showsTaskforProject = () => {
   let myArray = todoItems
     list.textContent = ''
-    todosHeader.textContent = 'Project name'
     list.appendChild(todosHeader)
 myArray.forEach(function(item, index) {
   console.log(item.dueDate);
-  if (item.title === 'fog') {
+  if (item.project === 'fog') {
     // console.log(item.title)
     // console.log('hello')
     const todo = document.createElement('div')
   todo.textContent = item.title
   list.appendChild(todo)
-
+  let returnedTodoFactory2 = addFormInputs();
+  console.log(returnedTodoFactory2)
+  // console.log(todoFactory2)
   }
 });
 console.log('working on it')
+const divs = document.querySelectorAll('.project');
+  divs.forEach(div => {
+      if (div.classList.contains('active')) {
+  console.log('found one')
+  div.classList.remove('active')
+} })
+
+
+
 }
 
 
@@ -277,9 +303,17 @@ parent.addEventListener('click', function(event) {
   div.addEventListener('click', () =>
   {
     showsTaskforProject()
+    div.classList.add('active');
     todosHeader.textContent = div.textContent
+
+
   });
-  console.log('hello parent')
+
+  // console.log('hello parent')
+  // let returnedTodoFactory2 = addFormInputs();
+  // console.log(returnedTodoFactory2)
+
+  // console.log(todoFactory2)
 });
 
 
