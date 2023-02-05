@@ -48,7 +48,7 @@
     margin: 20px;
 
 }
-.list div:hover {
+/* .list div:hover {
     background-color: red;
 }
 .views div:hover {
@@ -57,7 +57,7 @@
 .projects div:hover {
     background-color: red;
 
-}
+} */
 #myForm {
     border-radius: 10px;
     padding: 40px;
@@ -87,4 +87,33 @@
     overflow: auto; /* enable scroll if needed */
     background-color: rgb(0,0,0); /* fallback color */
     background-color: rgba(11, 54, 225, 0.4); /* black w/ opacity */
+  }
+  .todo {
+    display: grid;
+    grid-template-columns: .3fr 4fr 1fr 1fr 1fr;
+    grid-row: 1fr;
+    background-color: blue;
+  }
+.header {
+    background-color: pink;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+}
+.strikethrough {
+    position: relative;
+    display: grid;
+    grid-template-columns: .3fr 4fr 1fr 1fr 1fr;
+    grid-row: 1fr;
+    background-color: blue;
+    opacity: .5;
+  }
+
+  .strikethrough:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    border-top: 2px solid;
+    transform: translateY(-50%);
   }
