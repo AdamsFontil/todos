@@ -19,7 +19,7 @@
                     <div class="home"> All Tasks</div>
                     <div class="today">Due Today</div>
                     <div class="week">Due this Week</div>
-                    <div class="month">Due this Month</div>
+                    <div class="month">Completed Tasks</div>
                 </div>
                 <div class="projects">
                     <h2>Projects</h2>
@@ -55,12 +55,17 @@
         <form class="form" id="myForm">
             <label for="title">Title:</label>
             <input type="text" id="title" name="title"><br><br>
-            <label for="Description">Description:</label>
-            <input type="textbox" id="description" name="description"><br><br>
+            <label for="notes">Notes:</label>
+            <input type="textbox" id="notes" name="notes" ><br><br>
             <label for="dueDate">Due Date:</label>
             <input type="date" id="dueDate" name="dueDate"><br><br>
             <label for="priority">Priority:</label>
-            <input type="text" id="priority" name="priority"><br><br>
+            <!-- <input type="text" id="priority" name="priority"><br><br> -->
+            <select id="priority" name="priority">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select> <br><br>
             <input class="submit" type="submit" value=" + new Todo">
           </form>
           <!-- need to make form nicer, add a textbox for description, add categories for priority  -->
@@ -69,7 +74,13 @@
             <input type="text" id="title" name="title"><br><br>
             <input class="submitProject" type="submit" value=" + new Project">
           </form>
-
+          <div class="details" id="detailsPopup">
+            <h2 class="detailsTitle">Title</h2>
+            <!-- <div class="detailsProject">Project</div> -->
+            <div class="detailsDate">Due Date</div>
+            <div class="detailsPriority">Priority</div>
+            <div class="detailsNotes">Notes</div>
+          </div>
 
         <div class="footer">
             <h3>Copyright Adams</h3>
